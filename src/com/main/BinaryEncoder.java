@@ -1,6 +1,8 @@
 package com.main;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.lang.Math;
 
 public class BinaryEncoder {
@@ -14,20 +16,19 @@ public class BinaryEncoder {
         System.out.println(this.arr[index]);
     }
 
-    public int[] encode() {
+    public List<String> encode() {
         int max = Arrays.stream(this.arr).max().getAsInt();
         int bitLength = getBitLength(max, 2);
-        String[] binary = toBinary(this.arr, bitLength);
-        return this.arr;
+        List<String> binary = toBinary(this.arr, bitLength);
+        return binary;
     }
 
     public int getBitLength(int max, int logBase) {
         return (int) (Math.ceil(Math.log(max) / Math.log(logBase)));
     }
 
-    public String[] toBinary(int[] arr, int bitLength) {
-        //
-        String[] binary = {};
+    public List<String> toBinary(int[] arr, int bitLength) {
+        List<String> binary = new ArrayList<String>();
         for (int i = 0; i < arr.length; i++) {
             String binaryString = "";
             if (arr[i] == 0) {
@@ -45,7 +46,7 @@ public class BinaryEncoder {
                 String pre = "0".repeat(lengthDifference);
                 binaryString = pre + binaryString;
             }
-            System.out.println(binaryString);
+            binary.add(binaryString);
         }
         return binary;
     }
