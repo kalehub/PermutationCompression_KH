@@ -9,5 +9,7 @@ public class App {
         BinaryEncoder encoder = new BinaryEncoder(array);
         List<String> binaryEncoded = encoder.encode();
         System.out.println(binaryEncoded);
+        EliminationCompression compressor = new EliminationCompression(array);
+        compressor.compress();
     }
 }
