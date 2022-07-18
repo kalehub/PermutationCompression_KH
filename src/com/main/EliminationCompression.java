@@ -22,9 +22,26 @@ public class EliminationCompression {
          */
         for (int i = 0; i < this.arrays.length; i++) {
             int idx = binarySearch(this.arrays[i], arr, 0, 7);
-            System.out.println(idx);
+            String binaries = encodeToBinary(idx, this.arrays.length);
+            System.out.println(binaries);
         }
 
+    }
+
+    private String encodeToBinary(int idx, int len) {
+        int lengthNeeded = (int) (Math.ceil(Math.log(len) / Math.log(2)));
+        String binNum = "";
+        if (idx == 0) {
+            return "0".repeat(lengthNeeded);
+        }
+        for (int i = idx; i > 0; i = i / 2) {
+            String remainder = String.valueOf(i % 2);
+            binNum = remainder + binNum;
+        }
+        if (binNum.length() < lengthNeeded) {
+            binNum = "0".repeat(lengthNeeded - binNum.length()) + binNum;
+        }
+        return binNum;
     }
 
     public int binarySearch(int num, int[] array, int low, int high) {
